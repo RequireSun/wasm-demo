@@ -9,11 +9,19 @@
 		function loadWebAssembly (path) {
 			return fetch(path)
 				.then(res => res.arrayBuffer())
-				.then(WebAssembly.instantiate)
-				.then(mod => mod.instance);
+				.then(bytes => {
+					console.log('instantiate'); 
+					return WebAssembly.instantiate(bytes, {
+						imports: {}
+					});
+				})
+				.then(mod => {
+					console.log('instance');
+					return mod.instance;
+				});
 		}
 
-		loadWebAssembly('./dist/math.wasm')
+		loadWebAssembly('./math.wasm')
 			.then(instance => {
 				const { add, square } = instance.exports;
 				console.log('1 + 1', add(1, 1))

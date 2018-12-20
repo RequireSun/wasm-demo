@@ -1,0 +1,20 @@
+{
+  "name": "wasm-demo",
+  "version": "1.0.0",
+  "description": "WASM Demo =========",
+  "main": "index.js",
+  "scripts": {
+    "compile:level_01": "emcc ./level_01/math.c -Os -s WASM=1 -s SIDE_MODULE=1 -o ./level_01/math.wasm",
+    "serve": "anywhere"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RequireSun/wasm-demo.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RequireSun/wasm-demo/issues"
+  },
+  "homepage": "https://github.com/RequireSun/wasm-demo#readme"
+}
