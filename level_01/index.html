@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		function loadWebAssembly (path) {
+			return fetch(path)
+				.then(res => res.arrayBuffer())
+				.then(WebAssembly.instantiate)
+				.then(mod => mod.instance);
+		}
+
+		loadWebAssembly('./dist/math.wasm')
+			.then(instance => {
+				const { add, square } = instance.exports;
+				console.log('1 + 1', add(1, 1))
+				console.log('square 5', square(5))
+			});
+	</script>
+</body>
+</html>
