@@ -6,14 +6,20 @@
 </head>
 <body>
 	<script>
+		var importObject = {
+		  	imports: {
+		      	imported_func: function(arg) {
+		        	console.log(arg);
+		      	}
+		    }
+		};
+
 		function loadWebAssembly (path) {
 			return fetch(path)
 				.then(res => res.arrayBuffer())
 				.then(bytes => {
 					console.log('instantiate'); 
-					return WebAssembly.instantiate(bytes, {
-						imports: {}
-					});
+					return WebAssembly.instantiate(bytes, importObject);
 				})
 				.then(mod => {
 					console.log('instance');
